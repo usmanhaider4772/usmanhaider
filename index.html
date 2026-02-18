@@ -2042,10 +2042,6 @@
                 gap: 2rem;
             }
 
-            .newsletter-form {
-                flex-direction: column;
-            }
-
             .talk-header {
                 flex-direction: column;
             }
@@ -2125,28 +2121,46 @@
             line-height: 1.5;
         }
 
-/* ============================================
-           CONTACT SECTION - MODERN REDESIGN
+        /* ============================================
+        CONTACT SECTION - MODERN REDESIGN
         ============================================ */
+
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1.3fr;
-            gap: 4rem;
+            gap: 5rem;
             max-width: 1200px;
             margin: 0 auto;
-            align-items: start;
+            align-items: center;
         }
 
-        /* LEFT: Editorial + Expandable Socials */
+        /* ══════════════════════════════════════════════
+        LEFT: Editorial + Socials
+        ══════════════════════════════════════════════ */
         .contact-editorial {
             position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-editorial::before {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary), #14b8a6);
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            display: block;
         }
 
         .contact-headline {
-            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-size: clamp(2.2rem, 4.5vw, 3.5rem);
             font-weight: 800;
-            line-height: 1.2;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
             margin-bottom: 1.5rem;
+            color: var(--text-primary);
         }
 
         .contact-headline .highlight {
@@ -2154,58 +2168,19 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            display: inline-block;
+            filter: drop-shadow(0px 4px 15px rgba(20, 184, 166, 0.2)); 
         }
 
         .contact-description {
-            font-size: 1.1rem;
+            font-size: 1.125rem;
             line-height: 1.8;
             color: var(--text-secondary);
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
+            max-width: 90%;
         }
 
-        /* Availability Status with Pulse */
-        .availability-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 1.5rem;
-            background: rgba(45, 212, 191, 0.05);
-            border: 1px solid rgba(45, 212, 191, 0.2);
-            border-radius: 50px;
-            margin-bottom: 3rem;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.9rem;
-        }
-
-        .status-pulse {
-            width: 10px;
-            height: 10px;
-            background: var(--primary);
-            border-radius: 50%;
-            position: relative;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .status-pulse::before {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            animation: ripple 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-
-        @keyframes ripple {
-            0% { transform: scale(0.8); opacity: 1; }
-            100% { transform: scale(2.5); opacity: 0; }
-        }
-
-    /* Social Links */
+        /* Social Links (Unchanged per request) */
         .social-links {
             display: flex;
             gap: 1rem;
@@ -2241,28 +2216,24 @@
             transform: translateY(-3px);
         }
 
-        /* RIGHT: Minimal Form */
+        /* ══════════════════════════════════════════════
+        RIGHT: Minimal Form
+        ══════════════════════════════════════════════ */
         .form-card {
+            background: var(--bg-medium);
+            border: 1px solid var(--border);
+            border-radius: 16px;
             padding: 3rem;
             position: relative;
             overflow: hidden;
-        }
-
-        .form-card::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(45, 212, 191, 0.08) 0%, transparent 70%);
-            pointer-events: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .form-title {
             font-size: 1.6rem;
             font-weight: 700;
             margin-bottom: 2.5rem;
+            color: var(--text-primary);
         }
 
         /* Floating Label Inputs */
@@ -2275,7 +2246,7 @@
             width: 100%;
             background: transparent;
             border: none;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 2px solid var(--border);
             padding: 1rem 0 0.75rem;
             color: var(--text-primary);
             font-size: 1.05rem;
@@ -2299,6 +2270,7 @@
             transform-origin: left top;
         }
 
+        /* Triggers floating label on focus OR when text is inside */
         .form-input:focus ~ .form-label,
         .form-input:not(:placeholder-shown) ~ .form-label {
             transform: translateY(-28px) scale(0.85);
@@ -2306,27 +2278,12 @@
             font-weight: 600;
         }
 
-        .form-underline {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 2px;
-            width: 0;
-            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
-            transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 0 10px rgba(45, 212, 191, 0.3);
-        }
-
-        .form-input:focus ~ .form-underline {
-            width: 100%;
-        }
-
         /* Subject Dropdown */
         .form-select {
             width: 100%;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 8px; /* Toned down from 12px for a more professional edge */
             padding: 1rem 1.25rem;
             color: var(--text-primary);
             font-size: 1rem;
@@ -2337,6 +2294,7 @@
             background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%239ca3af' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 1.25rem center;
+            margin-bottom: 1.5rem;
         }
 
         .form-select:focus {
@@ -2353,49 +2311,28 @@
         /* Submit Button */
         .submit-btn {
             width: 100%;
-            padding: 1.25rem;
-            background: transparent;
-            color: var(--text-primary);
-            border: 2px solid var(--border);
-            border-radius: 12px;
+            padding: 1rem;
+            background: var(--primary);
+            color: #000;
+            border: none;
+            border-radius: 8px;
             font-weight: 700;
             font-size: 1.05rem;
-            letter-spacing: 0.05em;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            margin-top: 1.5rem;
-            font-family: 'Space Mono', monospace;
-            text-transform: uppercase;
-        }
-
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
-            transition: left 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: -1;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
         }
 
         .submit-btn:hover {
-            color: #000;
-            border-color: var(--primary);
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(45, 212, 191, 0.2);
+            box-shadow: 0 10px 20px rgba(45, 212, 191, 0.3);
+            background: #14b8a6; /* Slightly darker teal on hover */
         }
 
-        .submit-btn:hover::before {
-            left: 0;
-        }
-
+        /* Form Messages */
         .form-message {
             padding: 1rem;
-            border-radius: 12px;
+            border-radius: 8px;
             margin-bottom: 1.5rem;
             display: none;
             text-align: center;
@@ -2403,107 +2340,64 @@
         }
 
         .form-message.success {
+            display: block;
             background: rgba(45, 212, 191, 0.1);
             border: 1px solid var(--primary);
             color: var(--primary);
         }
 
         .form-message.error {
+            display: block;
             background: rgba(239, 68, 68, 0.1);
             border: 1px solid #ef4444;
             color: #ef4444;
         }
 
-        /* ============================================
-           NEWSLETTER SECTION
-        ============================================ */
-        .newsletter-section {
-            max-width: 900px;
-            margin: 5rem auto 0;
-            padding: 4rem 3rem;
-            position: relative;
-            overflow: hidden;
-            text-align: center;
+        /* ══════════════════════════════════════════════
+        MOBILE RESPONSIVENESS (THE FIX)
+        ══════════════════════════════════════════════ */
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .contact-editorial {
+                text-align: center;
+                align-items: center;
+            }
+
+            .contact-editorial::before {
+                margin: 0 auto 1.5rem auto;
+            }
+
+            .contact-description {
+                max-width: 100%;
+                padding: 0 1rem;
+            }
             
+            .social-links {
+                justify-content: center;
+            }
         }
 
-        .newsletter-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
-            animation: shimmer 3s ease-in-out infinite;
+        @media (max-width: 768px) {
+            .form-card {
+                padding: 2rem; /* Reduces padding on smaller screens */
+            }
         }
 
-        @keyframes shimmer {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+        @media (max-width: 480px) {
+            .contact-headline {
+                font-size: 2rem;
+            }
+            
+            .form-card {
+                padding: 1.5rem;
+            }
         }
 
-        .newsletter-section h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .newsletter-section p {
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            line-height: 1.7;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 1rem;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .newsletter-input {
-            flex: 1;
-            padding: 1rem 1.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text-primary);
-            font-family: inherit;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .newsletter-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: rgba(45, 212, 191, 0.05);
-        }
-
-        .newsletter-btn {
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: #000;
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            white-space: nowrap;
-        }
-
-        .newsletter-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(45, 212, 191, 0.3);
-        }
-
-        .newsletter-disclaimer {
-            margin-top: 1rem;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            opacity: 0.7;
-        }
+        
         /* Responsive */
         @media (max-width: 968px) {
             .contact-cards-grid {
@@ -2518,23 +2412,11 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .newsletter-elegant {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .newsletter-form-elegant {
-                max-width: 100%;
-            }
         }
 
         @media (max-width: 768px) {
             .professional-links-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .newsletter-form-elegant {
-                flex-direction: column;
             }
 
             .contact-form-elegant {
@@ -2685,23 +2567,6 @@
         [data-theme="light"] .availability-badge {
             background: rgba(45, 212, 191, 0.08);
             border-color: rgba(45, 212, 191, 0.25);
-        }
-
-        /* Fix Newsletter Section in Light Mode */
-        [data-theme="light"] .newsletter-section {
-            background: rgba(255, 255, 255, 0.6);
-            border-color: rgba(0, 0, 0, 0.08);
-        }
-
-        [data-theme="light"] .newsletter-input {
-            background: rgba(0, 0, 0, 0.03);
-            border-color: rgba(0, 0, 0, 0.1);
-            color: #111827;
-        }
-
-        [data-theme="light"] .newsletter-input:focus {
-            border-color: var(--primary);
-            background: rgba(45, 212, 191, 0.05);
         }
 
         /* Fix All Glass Cards in Light Mode */
@@ -2957,7 +2822,258 @@
             
         }
 
+        /* ══════════════════════════════════════════════
+        VIDEO SECTION STYLES
+        ══════════════════════════════════════════════ */
 
+        #videos {
+            padding: 8rem 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* Video Grid */
+        .video-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Video Card */
+        .video-card {
+            background: #111827;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            border-color: #2dd4bf;
+            box-shadow: 0 20px 40px rgba(45, 212, 191, 0.2);
+        }
+
+        /* Thumbnail Container */
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        /* Play Button Overlay */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover .video-overlay {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(45, 212, 191, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover .play-button {
+            background: #2dd4bf;
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(45, 212, 191, 0.6);
+        }
+
+        .play-button svg {
+            width: 32px;
+            height: 32px;
+            fill: #000;
+            margin-left: 4px;
+        }
+
+        /* Video Info */
+        .video-info {
+            padding: 1.5rem;
+        }
+
+        .video-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #f9fafb;
+        }
+
+        .video-description {
+            color: #9ca3af;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .video-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            background: rgba(45, 212, 191, 0.1);
+            border: 1px solid rgba(45, 212, 191, 0.2);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #2dd4bf;
+        }
+
+        .video-badge svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        /* Video Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .video-modal.active {
+            display: flex !important;
+        }
+
+        .video-modal-content {
+            width: 100%;
+            max-width: 1200px;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-player {
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-player iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(45, 212, 191, 0.9);
+            color: #000;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .close-button:hover {
+            background: #2dd4bf;
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        /* Light Mode Support */
+        [data-theme="light"] .video-card {
+            background: rgba(255, 255, 255, 0.6);
+            border-color: rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="light"] .video-card:hover {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(45, 212, 191, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="light"] .video-title {
+            color: #111827;
+        }
+
+        [data-theme="light"] .video-description {
+            color: #6b7280;
+        }
+
+        [data-theme="light"] .video-overlay {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        [data-theme="light"] .video-card:hover .video-overlay {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            #videos {
+                padding: 4rem 1rem;
+            }
+            
+            .video-gallery {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .video-modal {
+                padding: 1rem;
+            }
+            
+            .play-button {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .play-button svg {
+                width: 24px;
+                height: 24px;
+            }
 
         @media (max-width: 768px) {
             .nav-links {
@@ -4227,6 +4343,98 @@
         </div>
     </section>
 
+<section id="videos">
+    <div class="section-header reveal">
+        <div class="section-label">Featured</div>
+        <h2 class="section-title">Video Appearances</h2>
+        <p class="section-description">Interviews, talks, and media features</p>
+    </div>
+    
+    <div class="video-gallery">
+        
+        <!-- Video 3: Vimeo -->
+        <div class="video-card" onclick="openVid3()">
+            <div class="video-thumbnail">
+                <img src="https://vumbnail.com/1123459504.jpg" alt="Featured Presentation">
+                <div class="video-overlay">
+                    <div class="play-button">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">Featured Appearance</h3>
+                <p class="video-description">Event Highlights and comments on key takeaways from ORSHIN Summer School 2025</p>
+                <div class="video-meta">
+                    <span class="video-platform">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.977 6.416c-.105 2.338-1.739 5.543-4.894 9.609-3.268 4.247-6.026 6.37-8.29 6.37-1.409 0-2.578-1.294-3.553-3.881L5.322 11.4C4.603 8.816 3.834 7.522 3.01 7.522c-.179 0-.806.378-1.881 1.132L0 7.197c1.185-1.044 2.351-2.084 3.501-3.128C5.08 2.701 6.266 1.984 7.055 1.91c1.867-.18 3.016 1.1 3.447 3.838.465 2.953.789 4.789.971 5.507.539 2.45 1.131 3.674 1.776 3.674.502 0 1.256-.796 2.265-2.385 1.004-1.589 1.54-2.797 1.612-3.628.144-1.371-.395-2.061-1.614-2.061-.574 0-1.167.121-1.777.391 1.186-3.868 3.434-5.757 6.762-5.637 2.473.06 3.628 1.664 3.493 4.797l-.013.01z"/></svg> Vimeo
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Video 2: YouTube -->
+        <div class="video-card" onclick="openVid2()">
+            <div class="video-thumbnail">
+                <img src="https://img.youtube.com/vi/IxazUxsAExQ/maxresdefault.jpg" alt="Professional Interview">
+                <div class="video-overlay">
+                    <div class="play-button">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">Featured Testimonial</h3>
+                <p class="video-description">One Semester in CyberMACS! -- Discussing career journey and research opportunities</p>
+                <div class="video-meta">
+                    <span class="video-platform">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg> YouTube
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+                <!-- Video 1: YouTube -->
+        <div class="video-card" onclick="openVid1()">
+            <div class="video-thumbnail">
+                <img src="https://img.youtube.com/vi/51Dm2TkMHDQ/maxresdefault.jpg" alt="Cybersecurity Discussion">
+                <div class="video-overlay">
+                    <div class="play-button">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="video-info">
+                <h3 class="video-title">Featured Testimonial</h3>
+                <p class="video-description">First Month in CyberMACS! -- Sharing student experience the programme</p>
+                
+                <div class="video-meta">
+                    <span class="video-platform">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg> YouTube
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<!-- Video Modal -->
+<div class="video-modal" id="videoModal" onclick="closeVid()">
+    <div class="video-modal-content" onclick="event.stopPropagation()">
+        <button class="close-button" onclick="closeVid()">×</button>
+        <div class="video-player" id="videoPlayer"></div>
+    </div>
+</div>
+
+
+    
     <!-- Lightbox Modal -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox()">✕</button>
@@ -4301,19 +4509,32 @@
                     <div id="formMessage" class="form-message"></div>
 
                     <form id="contactForm">
+                        <input type="text" id="botCheck" name="botCheck" style="display:none;" tabindex="-1" autocomplete="off">
+
                         <div class="form-field">
-                            <input type="text" id="name" class="form-input" placeholder=" " required>
+                            <input type="text" 
+                                id="name" 
+                                class="form-input" 
+                                placeholder=" " 
+                                required 
+                                minlength="2" 
+                                maxlength="60" 
+                                pattern="[A-Za-zÀ-ÿ\s\-\']+" 
+                                title="Please use only letters, spaces, hyphens, or apostrophes.">
                             <label for="name" class="form-label">Your Name</label>
-                            <div class="form-underline"></div>
                         </div>
 
                         <div class="form-field">
-                            <input type="email" id="email" class="form-input" placeholder=" " required>
+                            <input type="email" 
+                                id="email" 
+                                class="form-input" 
+                                placeholder=" " 
+                                required 
+                                maxlength="100">
                             <label for="email" class="form-label">Email Address</label>
-                            <div class="form-underline"></div>
                         </div>
 
-                        <div class="form-field" style="margin-bottom: 2rem;">
+                        <div class="form-field">
                             <select id="subject" class="form-select" required>
                                 <option value="">Select inquiry type...</option>
                                 <option value="consulting">GRC Consulting</option>
@@ -4324,9 +4545,15 @@
                         </div>
 
                         <div class="form-field">
-                            <textarea id="message" class="form-input" placeholder=" " rows="1" style="resize: vertical; min-height: 60px;" required></textarea>
+                            <textarea id="message" 
+                                    class="form-input" 
+                                    placeholder=" " 
+                                    rows="1" 
+                                    style="resize: vertical; min-height: 60px;" 
+                                    required 
+                                    minlength="10" 
+                                    maxlength="2000"></textarea>
                             <label for="message" class="form-label">Your Message</label>
-                            <div class="form-underline"></div>
                         </div>
 
                         <button type="submit" id="submitBtn" class="submit-btn">
@@ -4337,19 +4564,6 @@
             </div>
 
         </div>
-
-        <!-- NEWSLETTER 
-        <div class="glass newsletter-section reveal">
-            <h3>📬 Stay Updated</h3>
-            <p>Subscribe to receive insights on cybersecurity trends, research developments, and industry best practices</p>
-            
-            <form id="newsletterForm" class="newsletter-form">
-                <input type="email" class="newsletter-input" placeholder="your.email@example.com" required>
-                <button type="submit" class="newsletter-btn">Subscribe</button>
-            </form>
-            
-            <p class="newsletter-disclaimer">No spam. Unsubscribe anytime.</p>
-        </div> -->
 
     </section>
 
@@ -4612,14 +4826,77 @@
         }
     });
 
-    // Newsletter Form
-    const newsletterForm = document.getElementById('newsletterForm');
-    newsletterForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const email = e.target.querySelector('input').value;
-        alert('Thanks for subscribing! Newsletter feature coming soon.');
-        e.target.reset();
-    });
+    document.addEventListener("DOMContentLoaded", function () {
+    const contactForm = document.getElementById("contactForm");
+    const formMessage = document.getElementById("formMessage");
+    const submitBtn = document.getElementById("submitBtn");
+
+    if (contactForm) {
+        contactForm.addEventListener("submit", function (e) {
+            e.preventDefault(); // Stop default browser submission
+
+            // 1. Check the Honeypot (Anti-Bot)
+            const botCheck = document.getElementById("botCheck").value;
+            if (botCheck !== "") {
+                console.warn("Bot detected. Submission blocked.");
+                return; // Fail silently so the bot doesn't know it was caught
+            }
+
+            // 2. Gather and Sanitize Inputs (Anti-XSS)
+            // This converts dangerous characters like < and > into safe HTML entities
+            const sanitize = (str) => {
+                const map = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#x27;',
+                    "/": '&#x2F;',
+                };
+                const reg = /[&<>"'/]/ig;
+                return str.replace(reg, (match) => (map[match]));
+            };
+
+            const rawName = document.getElementById("name").value.trim();
+            const rawEmail = document.getElementById("email").value.trim();
+            const rawSubject = document.getElementById("subject").value;
+            const rawMessage = document.getElementById("message").value.trim();
+
+            const safeData = {
+                name: sanitize(rawName),
+                email: sanitize(rawEmail),
+                subject: sanitize(rawSubject),
+                message: sanitize(rawMessage)
+            };
+
+            // 3. UI Update: Loading State
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Sending...";
+            submitBtn.style.opacity = "0.7";
+
+            // 4. Send to Backend (Replace this setTimeout with your actual fetch/API call)
+            // Example: fetch('your-backend-endpoint.php', { method: 'POST', body: JSON.stringify(safeData) })
+            setTimeout(() => {
+                // Mock Success Response
+                formMessage.textContent = "Message sent successfully! I will be in touch soon.";
+                formMessage.className = "form-message success";
+                contactForm.reset();
+
+                // Reset Button
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Send Message";
+                submitBtn.style.opacity = "1";
+
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    formMessage.style.display = "none";
+                }, 5000);
+
+            }, 1500); // Simulated 1.5s network request
+        });
+    }
+});
+
 
     // Track page views
     gtag('event', 'page_view', {
@@ -4870,6 +5147,33 @@
         console.warn('Image lazy loading skipped:', e);
     }
 
+        function openVid1() {
+            document.getElementById('videoModal').style.display = 'flex';
+            document.getElementById('videoPlayer').innerHTML = '<iframe src="https://www.youtube.com/embed/51Dm2TkMHDQ?autoplay=1" style="width:100%;height:100%;border:none;" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openVid2() {
+            document.getElementById('videoModal').style.display = 'flex';
+            document.getElementById('videoPlayer').innerHTML = '<iframe src="https://www.youtube.com/embed/IxazUxsAExQ?autoplay=1" style="width:100%;height:100%;border:none;" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openVid3() {
+            document.getElementById('videoModal').style.display = 'flex';
+            document.getElementById('videoPlayer').innerHTML = '<iframe src="https://player.vimeo.com/video/1123459504?autoplay=1" style="width:100%;height:100%;border:none;" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVid() {
+            document.getElementById('videoModal').style.display = 'none';
+            document.getElementById('videoPlayer').innerHTML = '';
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeVid();
+        });
 </script>
 </body>
 </html>
