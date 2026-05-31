@@ -1923,7 +1923,7 @@ color: var(--text-secondary);
     /* Reduced minmax slightly to prevent horizontal squishing on tablets */
     grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     gap: 1.5rem;
-}
+}       
 
 .award-card {
     background: var(--bg-medium);
@@ -3214,6 +3214,17 @@ VIDEO SECTION STYLES
 UNIFIED MOBILE RESPONSIVENESS
 ============================================ */
 @media (max-width: 968px) {
+
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    .reveal.active {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
 
     html, body { 
         overflow-x: hidden; 

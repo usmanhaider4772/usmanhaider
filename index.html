@@ -2112,6 +2112,13 @@
                         revealObserver.observe(section);
                     }
                 });
+
+                // Immediately show all sections on mobile — no reveal animation
+                if (window.innerWidth <= 968) {
+                    document.querySelectorAll('.reveal').forEach(el => {
+                        el.classList.add('active');
+                    });
+                }
             }
         } catch (e) {
             console.warn('Scroll reveal skipped:', e);
